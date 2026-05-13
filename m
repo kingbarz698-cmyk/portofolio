@@ -140,7 +140,6 @@ h1.hero-name{
   display:flex;align-items:center;gap:10px;
 }
 .hero-role-wrap .prefix{color:var(--text)}
-/* rotating text */
 .rotate-wrapper{
   overflow:hidden;
   height:1.2em;
@@ -204,7 +203,6 @@ h1.hero-name{
 .btn-ghost:hover{border-color:rgba(91,127,255,0.4);background:rgba(91,127,255,0.06)}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 
-/* hero image side */
 .hero-img-wrap{
   display:flex;justify-content:center;align-items:center;
 }
@@ -235,15 +233,6 @@ h1.hero-name{
   border:1px solid rgba(91,127,255,0.25);
   overflow:hidden;
   display:flex;align-items:center;justify-content:center;
-}
-.avatar-initials{
-  font-family:'Syne',sans-serif;
-  font-size:80px;
-  font-weight:800;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  opacity:.5;
-  letter-spacing:-4px;
 }
 .avatar-img{
   width:100%;height:100%;object-fit:cover;
@@ -637,7 +626,6 @@ footer span{color:var(--accent)}
 </head>
 <body>
 
-<!-- CANVAS BEAM -->
 <canvas id="canvas-bg"></canvas>
 <div class="grid-overlay"></div>
 
@@ -666,6 +654,7 @@ footer span{color:var(--accent)}
           <span class="prefix">Seorang</span>
           <div class="rotate-wrapper">
             <ul class="rotate-list">
+              <li>Vibe Coder</li>
               <li>Web Engineer</li>
               <li>System Builder</li>
               <li>Backend Logic</li>
@@ -708,19 +697,19 @@ footer span{color:var(--accent)}
         <div class="section-line"></div>
       </div>
       <p class="reveal reveal-delay-1" style="color:var(--muted);font-size:15.5px;line-height:1.9;max-width:480px">
-        Saya adalah <strong style="color:var(--text)">Web Engineer</strong> yang berfokus pada pengembangan sistem berbasis web dengan pendekatan clean architecture, efisiensi performa, dan pengalaman pengguna yang modern.
+        Saya adalah <strong style="color:var(--text)">Vibe Coder</strong> yang berfokus pada pengembangan sistem berbasis web dengan pendekatan clean architecture, efisiensi performa, dan pengalaman pengguna yang modern.
       </p>
       <div class="about-stats">
         <div class="stat-card reveal reveal-delay-2">
-          <div class="stat-num">3+</div>
+          <div class="stat-num">1+</div>
           <div class="stat-label">Tahun pengalaman</div>
         </div>
         <div class="stat-card reveal reveal-delay-3">
-          <div class="stat-num">10+</div>
+          <div class="stat-num">5+</div>
           <div class="stat-label">Projects selesai</div>
         </div>
         <div class="stat-card reveal reveal-delay-2">
-          <div class="stat-num">5+</div>
+          <div class="stat-num">4+</div>
           <div class="stat-label">Tech stack</div>
         </div>
         <div class="stat-card reveal reveal-delay-3">
@@ -820,8 +809,7 @@ footer span{color:var(--accent)}
       <!-- Project 1: Time Tracker -->
       <div class="project-card reveal" onclick="openModal('timetracker')">
         <div class="project-thumb">
-          <!-- Ganti src jika ada gambar: <img src="img/timetracker.png" alt="Time Tracker"> -->
-          <div style="font-size:60px"><i class="fas fa-clock" style="color:var(--accent)"></i></div>
+          <img src="img/image.png" alt="Time Tracker" style="width:100%;height:100%;object-fit:cover;">
           <div class="thumb-overlay"></div>
         </div>
         <div class="project-body">
@@ -839,20 +827,21 @@ footer span{color:var(--accent)}
         </div>
       </div>
 
-      <!-- Project 2: Warehouse -->
-      <div class="project-card reveal reveal-delay-2" onclick="openModal('gudang')">
+      <!-- Project 2: Pendaftaran -->
+      <div class="project-card reveal" onclick="openModal('pendaftaran')">
         <div class="project-thumb">
-          <div style="font-size:60px"><i class="fas fa-warehouse" style="color:var(--accent)"></i></div>
+          <img src="img/ppdb.png" alt="PPDB" style="width:100%;height:100%;object-fit:cover;">
           <div class="thumb-overlay"></div>
         </div>
         <div class="project-body">
           <div class="project-tags">
             <span class="tag">PHP</span>
             <span class="tag">MySQL</span>
-            <span class="tag">Bootstrap</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">TCPDF</span>
           </div>
-          <div class="project-title">Sistem Manajemen Gudang</div>
-          <p class="project-desc">Sistem inventaris modern dengan monitoring stok real-time, laporan barang masuk/keluar, dan manajemen supplier.</p>
+          <div class="project-title">Sistem Pendaftaran Siswa Baru</div>
+          <p class="project-desc">Sistem pendaftaran siswa baru berbasis web dengan manajemen data siswa, gelombang pendaftaran, pembayaran, dan cetak PDF untuk administrasi sekolah.</p>
           <div class="project-arrow">
             Detail Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
@@ -879,62 +868,113 @@ footer span{color:var(--accent)}
         </div>
       </div>
 
-      <!-- Project 4: Kasir -->
-      <div class="project-card reveal reveal-delay-2" onclick="openModal('kasir')">
+      <!-- Project 4: Photobooth -->
+      <div class="project-card reveal reveal-delay-1" onclick="openModal('photobooth')">
         <div class="project-thumb">
-          <div style="font-size:60px"><i class="fas fa-cash-register" style="color:var(--accent)"></i></div>
+          <img src="img/poto.png" alt="Photobooth" style="width:100%;height:100%;object-fit:cover;">
           <div class="thumb-overlay"></div>
         </div>
         <div class="project-body">
           <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">HTML5 Canvas</span>
             <span class="tag">PHP</span>
             <span class="tag">MySQL</span>
-            <span class="tag">Tailwind</span>
           </div>
-          <div class="project-title">Point of Sale (POS)</div>
-          <p class="project-desc">Aplikasi kasir modern dengan manajemen produk, transaksi penjualan, struk digital, dan laporan keuangan.</p>
+          <div class="project-title">Aplikasi Photobooth Web</div>
+          <p class="project-desc">Aplikasi photobooth berbasis web dengan kamera real-time, 8 filter preset, strip editor interaktif lengkap stiker & watermark, dan download hasil foto sebagai PNG.</p>
           <div class="project-arrow">
             Detail Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
 
-      <!-- Project 5: Perpustakaan -->
-      <div class="project-card reveal reveal-delay-3" onclick="openModal('perpustakaan')">
+      <!-- Project 5: ElektroPanel -->
+      <div class="project-card reveal reveal-delay-2" onclick="openModal('panelin')">
         <div class="project-thumb">
-          <div style="font-size:60px"><i class="fas fa-book" style="color:var(--accent)"></i></div>
+          <img src="img/panel.png" alt="ElektroPanel" style="width:100%;height:100%;object-fit:cover;">
           <div class="thumb-overlay"></div>
         </div>
         <div class="project-body">
           <div class="project-tags">
-            <span class="tag">PHP</span>
+            <span class="tag">PHP Native</span>
             <span class="tag">MySQL</span>
-            <span class="tag">Bootstrap</span>
+            <span class="tag">Bootstrap 5</span>
+            <span class="tag">Chart.js</span>
           </div>
-          <div class="project-title">Sistem Perpustakaan Digital</div>
-          <p class="project-desc">Manajemen buku, peminjaman & pengembalian otomatis, denda keterlambatan, dan katalog online.</p>
+          <div class="project-title">Manajemen ElektroPanel</div>
+          <p class="project-desc">Sistem manajemen perusahaan elektro & panel listrik dengan multi-role (Admin, Teknisi, Client), manajemen proyek, work order, inventory, keuangan, laporan, dan kalender jadwal.</p>
           <div class="project-arrow">
             Detail Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </div>
         </div>
       </div>
 
-      <!-- Project 6: Absensi -->
-      <div class="project-card reveal reveal-delay-1" onclick="openModal('absensi')">
+      <!-- Project 6: PS Booking -->
+      <div class="project-card reveal reveal-delay-3" onclick="openModal('psbooking')">
         <div class="project-thumb">
-          <div style="font-size:60px"><i class="fas fa-qrcode" style="color:var(--accent)"></i></div>
+          <img src="img/ps.png" alt="PS Booking" style="width:100%;height:100%;object-fit:cover;">
           <div class="thumb-overlay"></div>
         </div>
         <div class="project-body">
           <div class="project-tags">
-            <span class="tag">PHP</span>
+            <span class="tag">PHP Native</span>
             <span class="tag">MySQL</span>
+            <span class="tag">AJAX</span>
             <span class="tag">JavaScript</span>
           </div>
-          <div class="project-title">Sistem Absensi QR Code</div>
-          <p class="project-desc">Absensi berbasis QR code dengan geolocation, rekap kehadiran otomatis, dan integrasi laporan PDF.</p>
+          <div class="project-title">PS Booking System</div>
+          <p class="project-desc">Sistem booking PlayStation online dengan pilihan room PS3/PS4/PS5/VIP, cek ketersediaan real-time via AJAX, kalkulasi harga otomatis, dan panel admin lengkap dengan laporan bulanan.</p>
           <div class="project-arrow">
             Detail Project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 7: SIMAS (Laravel v1) -->
+      <div class="project-card reveal" onclick="openModal('simas')">
+        <div class="project-thumb">
+          <img src="img/simas.png" alt="SIMAS" style="width:100%;height:100%;object-fit:cover;">
+          <div class="thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Laravel</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">QR Code</span>
+            <span class="tag">Geolocation</span>
+          </div>
+          <div class="project-title">SIMAS System</div>
+          <p class="project-desc">Sistem manajemen absensi & kegiatan dengan QR Code dan validasi lokasi berbasis Laravel.</p>
+          <div class="project-arrow">
+            Detail Project
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 8: SIMANO (PHP Native v2) -->
+      <div class="project-card reveal" onclick="openModal('simano')">
+        <div class="project-thumb">
+          <img src="img/simano.png" alt="SIMANO" style="width:100%;height:100%;object-fit:cover;">
+          <div class="thumb-overlay"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">PHP Native</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">QR Code</span>
+            <span class="tag">SSE</span>
+          </div>
+          <div class="project-title">SIMANO System</div>
+          <p class="project-desc">Rebuild SIMAS menggunakan PHP MVC custom tanpa framework — dilengkapi SSE real-time, validasi GPS Haversine, dan sistem tugas multi-role.</p>
+          <div class="project-arrow">
+            Detail Project
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </div>
         </div>
       </div>
@@ -981,11 +1021,11 @@ footer span{color:var(--accent)}
           </div>
           <div class="contact-link-arrow">→</div>
         </a>
-        <a href="https://github.com/maskfachri27-byte" target="_blank" class="contact-link">
+        <a href="https://github.com/kingbarz698-cmyk" target="_blank" class="contact-link">
           <div class="contact-link-icon"><i class="fab fa-github" style="color:#fff"></i></div>
           <div class="contact-link-info">
             <div class="contact-link-label">GitHub</div>
-            <div class="contact-link-value">maskfachri27-byte</div>
+            <div class="contact-link-value">kingbarz698-cmyk</div>
           </div>
           <div class="contact-link-arrow">→</div>
         </a>
@@ -1104,8 +1144,6 @@ navbar.addEventListener('mouseleave', () => {
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 30);
-
-  // scroll spy
   const sections = ['hero','about','skills','projects','contact'];
   let current = 'hero';
   sections.forEach(id => {
@@ -1119,7 +1157,6 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// init indicator
 window.addEventListener('load', () => {
   const active = document.querySelector('.nav-link.active');
   if (active) moveIndicator(active);
@@ -1131,22 +1168,22 @@ const revealObs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      // animate skill bars
-      const bars = e.target.querySelectorAll ? e.target.querySelectorAll('.skill-bar-fill') : [];
-      bars.forEach(bar => { bar.style.width = bar.dataset.width + '%'; });
+    } else {
+      e.target.classList.remove('visible');
     }
   });
 }, { threshold: 0.12 });
-
 reveals.forEach(el => revealObs.observe(el));
 
-// skill bars triggered by section observer
 const skillsSection = document.getElementById('skills');
 const skillObs = new IntersectionObserver((entries) => {
+  const bars = document.querySelectorAll('.skill-bar-fill');
   if (entries[0].isIntersecting) {
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+    bars.forEach(bar => {
       setTimeout(() => { bar.style.width = bar.dataset.width + '%'; }, 200);
     });
+  } else {
+    bars.forEach(bar => { bar.style.width = '0%'; });
   }
 }, { threshold: 0.2 });
 if (skillsSection) skillObs.observe(skillsSection);
@@ -1168,19 +1205,21 @@ const projects = {
       'Manajemen task dan deadline terintegrasi',
     ]
   },
-  gudang: {
-    title: 'Sistem Manajemen Gudang',
-    desc: 'Sistem inventaris dan manajemen gudang modern yang memungkinkan monitoring stok secara real-time, pencatatan barang masuk dan keluar, serta pelaporan yang komprehensif untuk pengambilan keputusan bisnis yang lebih baik.',
-    image: 'img/image.png',
-    tech: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript', 'Chart.js'],
-    goal: 'Mengdigitalisasi proses manajemen gudang konvensional menjadi sistem terpusat yang efisien, akurat, dan mudah digunakan oleh tim operasional.',
+  pendaftaran: {
+    title: 'Sistem Pendaftaran Siswa Baru',
+    desc: 'Aplikasi web untuk mengelola seluruh proses penerimaan siswa baru di SMK Madya Depok. Sistem ini mencakup pendaftaran online, manajemen data siswa, gelombang pendaftaran, transaksi pembayaran, hingga cetak bukti pembayaran berbasis PDF — menggantikan proses administrasi manual menjadi terpusat dan efisien.',
+    image: 'img/ppdb.png',
+    tech: ['PHP', 'MySQL', 'JavaScript', 'TCPDF', 'CSS3'],
+    goal: 'Membantu pihak administrasi sekolah dalam mengelola proses penerimaan siswa baru secara digital, mulai dari input data calon siswa, pengaturan gelombang dan harga, hingga pencatatan pembayaran dan laporan.',
     features: [
-      'Monitoring stok barang secara real-time',
-      'Pencatatan transaksi barang masuk & keluar',
-      'Dashboard inventaris dengan grafik interaktif',
-      'Manajemen data supplier dan vendor',
-      'Sistem peringatan stok minimum otomatis',
-      'Laporan dan export data dalam berbagai format',
+      'Pendaftaran siswa baru dengan nomor otomatis (BYR001, BYR002, ...)',
+      'Manajemen gelombang pendaftaran beserta harga per gelombang',
+      'Data lengkap siswa: biodata, orang tua, wali, dan ukuran kaos',
+      'Sistem transaksi pembayaran dengan kalkulasi sisa bayar dan kembalian',
+      'Status pembayaran otomatis: Lunas / Belum Lunas',
+      'Cetak bukti pembayaran dalam format PDF via TCPDF',
+      'Dashboard admin dengan ringkasan data siswa dan pembayaran',
+      'Login sistem dengan role admin',
     ]
   },
   parkir: {
@@ -1198,49 +1237,102 @@ const projects = {
       'Dashboard monitoring slot parkir',
     ]
   },
-  kasir: {
-    title: 'Point of Sale (POS)',
-    desc: 'Aplikasi kasir modern dengan manajemen produk, transaksi penjualan real-time, struk digital, dan laporan keuangan komprehensif untuk mendukung operasional bisnis retail.',
-    image: 'img/image.png',
-    tech: ['PHP', 'MySQL', 'Tailwind CSS', 'JavaScript', 'Chart.js'],
-    goal: 'Membantu pelaku usaha retail mengelola transaksi penjualan, stok produk, dan laporan keuangan secara efisien dan akurat.',
+  photobooth: {
+    title: 'Aplikasi Photobooth Web',
+    desc: 'Aplikasi photobooth berbasis browser yang memungkinkan pengguna mengambil foto langsung dari kamera secara real-time, memilih jumlah strip (3 atau 4 foto), mengaplikasikan berbagai filter sinematik, lalu mengedit hasil foto di strip editor interaktif sebelum diunduh sebagai file PNG.',
+    image: 'img/poto.png',
+    tech: ['JavaScript', 'HTML5 Canvas', 'PHP', 'MySQL', 'CSS3'],
+    goal: 'Menghadirkan pengalaman photobooth digital yang menyenangkan langsung dari browser tanpa perlu aplikasi tambahan, dengan fitur editing strip yang lengkap dan hasil download berkualitas tinggi.',
     features: [
-      'Manajemen produk dengan kategori dan stok',
-      'Transaksi penjualan real-time dengan keranjang belanja',
-      'Struk digital dan print struk',
-      'Laporan penjualan harian/bulanan dengan grafik',
-      'Manajemen diskon dan promo',
-      'Multi-user dengan level akses',
+      'Kamera real-time via browser dengan tampilan live preview di canvas',
+      'Pilihan strip 3 atau 4 foto sebelum sesi dimulai',
+      '8 preset filter siap pakai: Normal, Cinematic, Dreamy, Golden Hour, Noir, VSCO Green, Y2K, Cool Film',
+      'Filter manual dengan slider: Grayscale, Soft, Retro, Vintage, Lens Flare, Film Grain',
+      'Timer countdown (3s / 5s / 10s) dan mode Auto Capture otomatis',
+      'Strip Editor: pilih background, warna teks, tipe strip (Photobooth / Filmstrip)',
+      'Tambahkan stiker emoji dan seret posisinya langsung di canvas',
+      'Tambahkan teks custom, tanggal otomatis, dan watermark',
+      'Download hasil strip sebagai file PNG langsung ke perangkat',
     ]
   },
-  perpustakaan: {
-    title: 'Sistem Perpustakaan Digital',
-    desc: 'Sistem manajemen perpustakaan lengkap dengan katalog buku digital, peminjaman & pengembalian otomatis, perhitungan denda keterlambatan, dan laporan aktifitas anggota.',
-    image: 'img/image.png',
-    tech: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript', 'TCPDF'],
-    goal: 'Mengmodernisasi pengelolaan perpustakaan sekolah/kampus dengan sistem digital yang terstruktur dan mudah diakses.',
+  panelin: {
+    title: 'ElektroPanel',
+    desc: 'Sistem manajemen perusahaan berbasis web untuk bisnis elektro, panel listrik, instalasi, dan maintenance. Dibangun dengan arsitektur multi-role yang memisahkan akses Admin, Teknisi, dan Client secara jelas — semua dalam satu platform terpusat yang efisien.',
+    image: 'img/panel.png',
+    tech: ['PHP Native', 'MySQL', 'Bootstrap 5', 'Chart.js', 'FullCalendar', 'DataTables', 'SweetAlert2'],
+    goal: 'Mendigitalisasi operasional perusahaan elektro dari manajemen proyek, penugasan teknisi, monitoring stok material, pencatatan keuangan, hingga laporan — menggantikan pencatatan manual yang tidak efisien menjadi sistem terpusat berbasis web.',
     features: [
-      'Katalog buku online dengan pencarian advanced',
-      'Peminjaman & pengembalian otomatis',
-      'Perhitungan denda keterlambatan otomatis',
-      'Manajemen anggota perpustakaan',
-      'Laporan peminjaman dan koleksi buku',
-      'Notifikasi jatuh tempo via dashboard',
+      'Dashboard admin dengan statistik proyek, work order, keuangan, dan stok real-time + grafik Chart.js',
+      'Manajemen Proyek: CRUD proyek, assign teknisi, upload dokumen, dan progress tracking',
+      'Work Order: buat & validasi WO, update status (pending → in progress → completed), upload foto bukti pekerjaan',
+      'Inventory: kelola barang, stok masuk/keluar, riwayat transaksi, dan alert stok minimum otomatis',
+      'Manajemen Supplier: data supplier terintegrasi dengan sistem inventory',
+      'Keuangan: pencatatan pemasukan & pengeluaran, grafik laba/rugi bulanan per proyek',
+      'Laporan & Export: laporan proyek, work order, teknisi, dan keuangan siap print/PDF',
+      'Kalender Jadwal dengan FullCalendar untuk monitoring jadwal proyek dan WO',
+      'Portal Teknisi: lihat WO yang ditugaskan, update status, upload foto hasil kerja',
+      'Portal Client: pantau progress proyek, download dokumen, dan kirim request pekerjaan baru',
+      'Keamanan: PDO prepared statements, CSRF token, bcrypt password, dan Role-Based Access Control (RBAC)',
     ]
   },
-  absensi: {
-    title: 'Sistem Absensi QR Code',
-    desc: 'Sistem absensi modern berbasis QR code dengan validasi geolocation, rekap kehadiran otomatis, dan integrasi export laporan PDF untuk memudahkan monitoring karyawan/siswa.',
-    image: 'img/image.png',
-    tech: ['PHP', 'MySQL', 'JavaScript', 'Tailwind CSS', 'TCPDF'],
-    goal: 'Menyediakan solusi absensi modern yang akurat, anti-manipulasi, dan terintegrasi dengan laporan otomatis untuk institusi pendidikan maupun perusahaan.',
+  psbooking: {
+    title: 'PS Booking System',
+    desc: 'Aplikasi booking PlayStation berbasis web yang memungkinkan pelanggan memesan room secara online tanpa perlu datang langsung. Tersedia empat tipe room (PS3, PS4, PS5, VIP Room) dengan harga yang berbeda, cek ketersediaan real-time, dan kode booking unik sebagai bukti reservasi.',
+    image: 'img/ps.png',
+    tech: ['PHP Native', 'MySQL', 'PDO', 'JavaScript', 'AJAX', 'CSS3'],
+    goal: 'Memudahkan pelanggan rental PS untuk memesan room kapan saja secara online, sekaligus memberikan admin tools yang lengkap untuk mengelola jadwal, status booking, dan laporan pendapatan bulanan.',
     features: [
-      'Absensi via scan QR code unik per sesi',
-      'Validasi geolocation untuk memastikan keberadaan',
-      'Rekap kehadiran harian & bulanan otomatis',
-      'Manajemen sesi absensi dan jadwal',
-      'Export laporan ke PDF',
-      'Dashboard monitoring kehadiran real-time',
+      'Form booking online dengan pilihan tipe room interaktif (PS3, PS4, PS5, VIP Room)',
+      'Dropdown room dinamis via AJAX — otomatis menyesuaikan tipe yang dipilih',
+      'Cek ketersediaan room real-time sebelum booking dikonfirmasi',
+      'Kalkulasi harga otomatis berdasarkan tipe room dan durasi sewa',
+      'Kode booking unik sebagai bukti reservasi untuk pelanggan',
+      'Halaman cek status booking by kode untuk pelanggan',
+      'Dashboard admin: statistik booking, pendapatan, dan kalender jadwal harian',
+      'Manajemen booking: filter, search, pagination, update status (Pending → Confirmed → Selesai / Cancelled)',
+      'Kelola rooms dan tipe room beserta harga per jam',
+      'Timeline view jadwal booking harian per room',
+      'Laporan bulanan dengan breakdown pendapatan per tipe room',
+    ]
+  },
+  simas: {
+    title: 'SIMAS — Sistem Manajemen Absensi & Kegiatan (v1)',
+    desc: 'Versi pertama sistem manajemen absensi & kegiatan, dibangun menggunakan Laravel. Dilengkapi QR Code attendance, validasi lokasi GPS, sistem role, dan export laporan Excel. Menjadi fondasi yang kemudian di-rebuild menjadi SIMANO dengan PHP Native MVC.',
+    image: 'img/simas.png',
+    tech: ['Laravel', 'PHP', 'MySQL', 'JavaScript', 'Bootstrap', 'QR Code', 'Geolocation', 'Maatwebsite Excel'],
+    goal: 'Membangun sistem terpusat untuk manajemen absensi dan kegiatan agar proses monitoring peserta, pencatatan kehadiran, serta pembuatan laporan menjadi lebih efisien, akurat, dan real-time.',
+    features: [
+      'Sistem autentikasi login dengan Role-Based Access Control (Admin & User)',
+      'Manajemen kegiatan (CRUD kegiatan, peserta, dan jadwal)',
+      'Absensi berbasis QR Code untuk validasi kehadiran secara cepat',
+      'Validasi lokasi (geolocation) untuk memastikan kehadiran di lokasi yang benar',
+      'Manajemen tugas terkait kegiatan dengan tracking progress',
+      'Sistem notifikasi untuk update kegiatan & tugas',
+      'Laporan absensi yang dapat di-export ke Excel',
+      'Dashboard statistik untuk monitoring aktivitas dan kehadiran',
+      'Middleware keamanan (role & ownership validation)',
+      'Service layer (QR Code, Geolocation, Laporan) untuk clean architecture',
+    ]
+  },
+  simano: {
+    title: 'SIMANO — Sistem Manajemen Absensi & Kegiatan (v2)',
+    desc: 'Rebuild penuh dari SIMAS menggunakan PHP Native MVC Custom — dibangun tanpa framework, Router, Controller, Middleware, CSRF, dan Auth ditulis sendiri dari nol. Versi ini menambahkan notifikasi real-time via SSE, time-window absensi cerdas, sistem tugas multi-role, dan arsitektur yang jauh lebih ringan dan fleksibel.',
+    image: 'img/simano.png',
+    tech: ['PHP Native (MVC Custom)', 'MySQL', 'PDO', 'JavaScript', 'Bootstrap', 'Chart.js', 'QR Code (Google Charts)', 'Geolocation API', 'SSE (Server-Sent Events)', 'PHPMailer'],
+    goal: 'Me-rebuild SIMAS dari Laravel menjadi PHP Native MVC untuk belajar membangun arsitektur framework dari nol, sekaligus menambahkan fitur SSE real-time dan smart time-window absensi yang lebih akurat.',
+    features: [
+      'MVC Custom PHP: Router, Controller, Middleware, CSRF, Auth — dibangun sendiri tanpa framework',
+      'Role-Based Access Control 3 level: Admin, Pengurus, Anggota',
+      'Manajemen kegiatan CRUD + workflow status: draft → aktif → selesai / dibatalkan',
+      'QR Code unik per kegiatan (Google Charts API) — scan langsung dari mobile browser',
+      'Validasi lokasi GPS dengan Haversine formula, radius configurable per kegiatan',
+      'Smart time-window: absensi buka 30 mnt sebelum mulai, terlambat +5 mnt, tutup +30 mnt selesai',
+      'Sistem tugas dengan prioritas (rendah/sedang/tinggi), deadline, dan tracking status',
+      'Notifikasi real-time via Server-Sent Events (SSE) — tanpa polling / tanpa refresh',
+      'Dashboard berbeda per role dengan statistik kehadiran & grafik Chart.js',
+      'Export laporan absensi ke Excel',
+      'Keamanan: PDO prepared statements, CSRF token, bcrypt, rate limit login (5x / 10 mnt)',
+      'Email notifikasi otomatis via PHPMailer + Gmail SMTP untuk kegiatan & tugas baru',
     ]
   }
 };
