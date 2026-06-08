@@ -2,6 +2,8 @@ import './index.css'
 import { Suspense, lazy } from 'react'
 import Navbar from './components/sections/Navbar'
 import { ElegantShape } from './components/ui/ElegantShape'
+import { MouseTrackerProvider, Pointer, PointerFollower } from './components/ui/cursor'
+import TouchRipple from './components/ui/TouchRipple'
 
 const Hero     = lazy(() => import('./components/sections/Hero'))
 const About    = lazy(() => import('./components/sections/About'))
@@ -23,7 +25,12 @@ const SectionFallback = () => (
 
 export default function App() {
   return (
-    <>
+    // FIX: wrapper dengan overflow-x hidden agar tidak bisa geser ke samping
+    <div style={{ overflowX: 'hidden', width: '100%', position: 'relative' }}>
+
+      {/* Touch ripple — hanya aktif di mobile */}
+      <TouchRipple />
+
       {/* Dark base */}
       <div className="fixed inset-0 z-0" style={{ background: '#030303' }} />
 
@@ -36,7 +43,7 @@ export default function App() {
         }}
       />
 
-      {/* ElegantShapes — FIX: kurangi jumlah shape di mobile via CSS */}
+      {/* ElegantShapes — FIX: hanya 2 shape di mobile untuk performa */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <ElegantShape
           delay={0.3} width={600} height={140} rotate={12}
@@ -48,52 +55,88 @@ export default function App() {
           gradient="from-rose-500/[0.15]"
           className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
         />
-        {/* Shape berikut hanya di desktop — hidden di mobile untuk performa */}
+        {/* Shape berikut hanya tampil di desktop */}
         <ElegantShape
           delay={0.4} width={300} height={80} rotate={-8}
           gradient="from-violet-500/[0.15]"
-          className="hidden md:block left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
+          className="hidden md:block left-[5%] bottom-[5%]"
         />
         <ElegantShape
           delay={0.6} width={200} height={60} rotate={20}
           gradient="from-amber-500/[0.15]"
-          className="hidden md:block right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
+          className="hidden md:block right-[15%] top-[10%]"
         />
         <ElegantShape
           delay={0.7} width={150} height={40} rotate={-25}
           gradient="from-cyan-500/[0.15]"
-          className="hidden md:block left-[18%] md:left-[22%] top-[3%] md:top-[6%]"
+          className="hidden md:block left-[18%] top-[3%]"
         />
         <ElegantShape
           delay={0.8} width={260} height={70} rotate={10}
           gradient="from-teal-500/[0.12]"
-          className="hidden md:block right-[5%] md:right-[8%] top-[35%] md:top-[40%]"
+          className="hidden md:block right-[5%] top-[35%]"
         />
         <ElegantShape
           delay={0.9} width={400} height={100} rotate={-5}
           gradient="from-pink-500/[0.10]"
-          className="hidden md:block left-[20%] md:left-[25%] top-[80%] md:top-[84%]"
+          className="hidden md:block left-[20%] top-[80%]"
         />
       </div>
 
       {/* Navbar */}
       <Navbar />
 
-      {/* Sections */}
-      <main className="relative z-10">
-        <Suspense fallback={<SectionFallback />}><Hero /></Suspense>
-        <Suspense fallback={<SectionFallback />}><About /></Suspense>
-        <Suspense fallback={<SectionFallback />}><Skills /></Suspense>
-        <Suspense fallback={<SectionFallback />}><Projects /></Suspense>
-        <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
-      </main>
-
-      <footer
-        className="relative z-10 text-center py-8 font-syne font-semibold text-sm border-t"
-        style={{ borderColor: 'rgba(99,130,255,0.12)', color: 'var(--muted)' }}
+      {/* Sections — dibungkus MouseTrackerProvider untuk custom cursor di desktop */}
+      <MouseTrackerProvider
+        style={{ position: 'relative', zIndex: 10 }}
       >
-        Dibuat oleh <span style={{ color: 'var(--accent)' }}>Fachri Akbar</span> · Web Engineer · 2025
-      </footer>
-    </>
+        {/* Custom cursor — hanya muncul di desktop (hover device) */}
+        <Pointer>
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: '50%',
+              background: 'rgba(91,127,255,0.15)',
+              border: '2px solid rgba(91,127,255,0.8)',
+              boxShadow: '0 0 12px rgba(91,127,255,0.5)',
+            }}
+          />
+        </Pointer>
+        <PointerFollower align="bottom-right" gap={14}>
+          <div
+            style={{
+              background: 'rgba(91,127,255,0.9)',
+              color: '#fff',
+              fontSize: '11px',
+              fontWeight: 600,
+              fontFamily: 'Syne, sans-serif',
+              padding: '4px 10px',
+              borderRadius: '20px',
+              border: '1px solid rgba(255,255,255,0.2)',
+              boxShadow: '0 4px 12px rgba(91,127,255,0.4)',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Portfolio
+          </div>
+        </PointerFollower>
+
+        <main>
+          <Suspense fallback={<SectionFallback />}><Hero /></Suspense>
+          <Suspense fallback={<SectionFallback />}><About /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Skills /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Projects /></Suspense>
+          <Suspense fallback={<SectionFallback />}><Contact /></Suspense>
+        </main>
+
+        <footer
+          className="text-center py-8 font-syne font-semibold text-sm border-t"
+          style={{ borderColor: 'rgba(99,130,255,0.12)', color: 'var(--muted)', position: 'relative', zIndex: 10 }}
+        >
+          Dibuat oleh <span style={{ color: 'var(--accent)' }}>Fachri Akbar</span> · Web Engineer · 2025
+        </footer>
+      </MouseTrackerProvider>
+    </div>
   )
 }

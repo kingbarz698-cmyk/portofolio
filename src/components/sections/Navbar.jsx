@@ -14,6 +14,7 @@ export function Navbar() {
   const [scrolled, setScrolled]   = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const [pill, setPill]           = useState({ left: 0, top: 0, width: 0, height: 0 })
+  const [ready, setReady]         = useState(false)
   const navRef   = useRef(null)
   const linkRefs = useRef({})
   const rafRef   = useRef(null)
@@ -24,15 +25,10 @@ export function Navbar() {
     if (!el || !nav) return
     const er = el.getBoundingClientRect()
     const nr = nav.getBoundingClientRect()
-    setPill({
-      left:   er.left - nr.left,
-      top:    er.top  - nr.top,
-      width:  er.width,
-      height: er.height,
-    })
+    setPill({ left: er.left - nr.left, top: er.top - nr.top, width: er.width, height: er.height })
   }, [])
 
-  // Scroll tracker — throttled via rAF agar tidak lag
+  // Scroll tracker — throttled via rAF
   useEffect(() => {
     const onScroll = () => {
       if (rafRef.current) return
@@ -56,12 +52,16 @@ export function Navbar() {
     }
   }, [])
 
+  // Update pill saat active berubah
   useEffect(() => {
-    let raf1 = requestAnimationFrame(() => {
-      let raf2 = requestAnimationFrame(() => updatePill(active))
-      return () => cancelAnimationFrame(raf2)
+    const r1 = requestAnimationFrame(() => {
+      const r2 = requestAnimationFrame(() => {
+        updatePill(active)
+        setReady(true)
+      })
+      return () => cancelAnimationFrame(r2)
     })
-    return () => cancelAnimationFrame(raf1)
+    return () => cancelAnimationFrame(r1)
   }, [active, updatePill])
 
   useEffect(() => {
@@ -84,45 +84,44 @@ export function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed top-3 left-1/2 z-50 flex items-center p-1.5 rounded-full"
+      className="fixed left-1/2 z-50 flex items-center rounded-full"
       style={{
+        top: '12px',
+        padding: '6px 6px',
         transform: modalOpen
           ? 'translateX(-50%) translateY(-12px)'
           : 'translateX(-50%) translateY(0)',
-        background: 'rgba(255,255,255,0.08)',
-        border: '1px solid rgba(255,255,255,0.2)',
-        backdropFilter: 'blur(40px) saturate(200%)',
-        WebkitBackdropFilter: 'blur(40px) saturate(200%)',
+        background: 'rgba(15,15,20,0.75)',
+        border: '1px solid rgba(255,255,255,0.15)',
+        backdropFilter: 'blur(24px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(24px) saturate(180%)',
         boxShadow: scrolled
-          ? '0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.25)'
-          : '0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.2)',
-        maxWidth: 'calc(100vw - 24px)',
+          ? '0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.12)'
+          : '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+        // FIX: pakai width fixed agar tidak terpotong
+        width: 'max-content',
+        maxWidth: 'calc(100vw - 16px)',
         opacity: modalOpen ? 0 : 1,
         pointerEvents: modalOpen ? 'none' : 'auto',
-        transition: 'box-shadow 0.3s, opacity 0.25s ease, transform 0.25s ease',
+        transition: 'box-shadow 0.3s ease, opacity 0.25s ease, transform 0.25s ease',
+        willChange: 'transform',
       }}
     >
       {/* Sliding pill */}
-      {pill.width > 0 && (
+      {ready && pill.width > 0 && (
         <motion.span
           aria-hidden="true"
           className="absolute rounded-full pointer-events-none"
           style={{
-            background: 'rgba(91,127,255,0.28)',
-            border: '1px solid rgba(91,127,255,0.55)',
-            backdropFilter: 'blur(12px)',
-            boxShadow: '0 0 16px rgba(91,127,255,0.35), inset 0 1px 0 rgba(255,255,255,0.2)',
+            background: 'rgba(91,127,255,0.25)',
+            border: '1px solid rgba(91,127,255,0.5)',
+            boxShadow: '0 0 12px rgba(91,127,255,0.3)',
             willChange: 'transform',
           }}
-          animate={{
-            left:   pill.left,
-            top:    pill.top,
-            width:  pill.width,
-            height: pill.height,
-          }}
+          animate={{ left: pill.left, top: pill.top, width: pill.width, height: pill.height }}
           initial={false}
-          // Lebih smooth: stiffness lebih rendah, damping lebih tinggi
-          transition={{ type: 'spring', stiffness: 280, damping: 40, mass: 0.6 }}
+          // FIX: lebih smooth
+          transition={{ type: 'spring', stiffness: 250, damping: 38, mass: 0.5 }}
         />
       )}
 
@@ -134,15 +133,16 @@ export function Navbar() {
             href={l.href}
             ref={el => { if (el) linkRefs.current[id] = el }}
             onClick={() => setActive(id)}
-            className="relative z-10 rounded-full font-syne font-semibold whitespace-nowrap"
+            className="relative z-10 rounded-full font-syne font-semibold whitespace-nowrap select-none"
             style={{
-              color: active === id ? '#fff' : 'rgba(255,255,255,0.5)',
-              // FIX: ukuran font lebih besar di mobile
-              padding: 'clamp(7px,1.8vw,9px) clamp(11px,3vw,17px)',
-              fontSize: 'clamp(12px,2.8vw,13px)',
+              color: active === id ? '#ffffff' : 'rgba(255,255,255,0.45)',
+              // FIX: ukuran lebih besar dan padding lebih lega
+              fontSize: 'clamp(11px, 3.2vw, 13px)',
+              padding: 'clamp(8px, 2vw, 10px) clamp(12px, 3.5vw, 18px)',
               letterSpacing: '0.02em',
-              transition: 'color 0.2s',
+              transition: 'color 0.2s ease',
               textDecoration: 'none',
+              WebkitTapHighlightColor: 'transparent',
             }}
           >
             {l.label}
