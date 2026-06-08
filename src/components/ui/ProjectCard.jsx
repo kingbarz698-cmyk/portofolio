@@ -21,7 +21,7 @@ export function ProjectCard({ project, onClick }) {
       onMouseLeave={() => setHovered(false)}
       onClick={() => onClick(project)}
     >
-      {/* Glow overlay on hover */}
+      {/* Glow overlay */}
       <div
         className="absolute inset-0 rounded-2xl transition-opacity duration-300 pointer-events-none"
         style={{
@@ -30,11 +30,13 @@ export function ProjectCard({ project, onClick }) {
         }}
       />
 
-      {/* Thumbnail */}
+      {/* Thumbnail — FIX: tambah lazy loading */}
       <div className="relative h-48 overflow-hidden border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
         <img
           src={project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           onError={(e) => { e.target.style.display = 'none' }}
         />
@@ -67,10 +69,8 @@ export function ProjectCard({ project, onClick }) {
             </span>
           ))}
         </div>
-
         <h3 className="font-syne font-bold text-lg text-white mb-2 leading-tight">{project.title}</h3>
         <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--muted)' }}>{project.desc}</p>
-
         <div
           className="flex items-center text-sm font-bold font-syne transition-all duration-300"
           style={{ color: 'var(--accent)', gap: hovered ? '12px' : '8px' }}

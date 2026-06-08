@@ -23,27 +23,31 @@
 
 html {
   scroll-behavior: smooth;
-  /* FIX: navbar tidak tertutup saat klik menu */
+  /* FIX: section tidak tertutup navbar saat klik menu */
   scroll-padding-top: 72px;
+  /* FIX: tidak bisa zoom/geser ke samping di mobile */
+  overflow-x: hidden;
 }
 
 body {
   background: #030303;
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
-  /* FIX: tidak bisa geser ke samping di mobile */
   overflow-x: hidden;
   max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* FIX: scroll smooth di iOS */
   -webkit-overflow-scrolling: touch;
+  /* FIX: cegah zoom tidak sengaja di mobile */
+  touch-action: pan-y;
 }
 
-/* FIX: cegah geser horizontal di semua elemen */
-html, body, #root {
+/* FIX: root juga tidak boleh overflow */
+#root {
   overflow-x: hidden;
-  max-width: 100%;
+  width: 100%;
+  max-width: 100vw;
 }
 
 /* Scrollbar */
@@ -84,12 +88,20 @@ html, body, #root {
 
 .ring-pulse { animation: pulse-ring 3s ease-in-out infinite; }
 
-/* FIX: kurangi animasi berat di mobile untuk performa */
+/* FIX: performa mobile */
 @media (max-width: 768px) {
+  /* Matikan animasi yang tidak perlu */
   .ring-pulse { animation: none; }
+
+  /* Kurangi blur berat */
   .glass {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Smooth scroll di semua section */
+  section {
+    -webkit-overflow-scrolling: touch;
   }
 }
 
