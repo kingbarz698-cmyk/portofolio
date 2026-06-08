@@ -22,24 +22,31 @@
 }
 
 html {
+  /* FIX: scroll smooth tapi pakai scroll-padding agar section tidak tertutup navbar */
   scroll-behavior: smooth;
+  scroll-padding-top: 70px;
 }
 
 body {
-  background: #030303; /* ← solid hitam, TIDAK ADA GRID */
+  background: #030303;
   color: var(--text);
   font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* FIX: aktifkan hardware acceleration untuk scroll smooth di mobile */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* FIX: semua animasi pakai GPU */
+.motion-safe * {
+  will-change: auto;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: #030303; }
 ::-webkit-scrollbar-thumb { background: rgba(91,127,255,0.3); border-radius: 3px; }
-
-/* .grid-overlay DIHAPUS TOTAL — TIDAK ADA DI SINI */
 
 .text-gradient {
   background: linear-gradient(135deg, var(--accent), var(--accent2));
@@ -73,3 +80,22 @@ body {
 }
 
 .ring-pulse { animation: pulse-ring 3s ease-in-out infinite; }
+
+/* FIX: kurangi animasi di mobile untuk performa */
+@media (max-width: 768px) {
+  .ring-pulse {
+    animation: none;
+  }
+  /* Matikan blur berat di mobile */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
+
+/* FIX: respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .rotate-list { animation: none; }
+  .ring-pulse { animation: none; }
+}
